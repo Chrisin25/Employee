@@ -10,14 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.EmployeeDb.models.Employee;
-import com.example.EmployeeDb.service.EmployeeService;
-
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import com.example.EmployeeDb.models.Employee;
+import com.example.EmployeeDb.service.EmployeeService;
 
 @RestController
 @RequestMapping("/")
@@ -40,7 +38,7 @@ public class EmployeeController {
     
     @GetMapping("/ViewEmployee")
     public Map<String,Object> getemployeecontroller(
-    @RequestParam(value = "year-of-experience", required = false) Integer yearOfExperience,
+    @RequestParam(value = "year-of-experience", required = false) Long yearOfExperience,
     @RequestParam(value = "managerId", required = false) String managerId
     ){
         return employeeService.getemployeecontroller(yearOfExperience, managerId);

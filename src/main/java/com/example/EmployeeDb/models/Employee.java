@@ -1,6 +1,6 @@
 package com.example.EmployeeDb.models;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 
-@Document("Employee")
+@Document("employee")
 public class Employee {
 
     private String name;
@@ -30,16 +30,18 @@ public class Employee {
     @Size(min = 10, max = 10,message = "mobile number should contain exactly 10 digits")
     private String mobile;
     private String location;
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
-    private LocalDateTime dateOfJoining;
-    private LocalDateTime createdTime;
-    private LocalDateTime updatedTime;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    private OffsetDateTime dateOfJoining;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    private OffsetDateTime createdTime;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    private OffsetDateTime updatedTime;
     private String managerId;
-    private int yearOfExperience; 
+    private long yearOfExperience; 
 
     
     public Employee(String id, String name, String designation, String email, String department,
-            String mobile, String location, String managerId,LocalDateTime dateOfJoining) {
+            String mobile, String location, String managerId,OffsetDateTime dateOfJoining) {
         this.id = id;
         this.name = name;
         this.dateOfJoining = dateOfJoining;
@@ -68,10 +70,10 @@ public class Employee {
     public void setName(String name) {
         this.name = name;
     }
-    public LocalDateTime getDateOfJoining() {
+    public OffsetDateTime getDateOfJoining() {
         return dateOfJoining;
     }
-    public void setDateOfJoining(LocalDateTime dateOfJoining) {
+    public void setDateOfJoining(OffsetDateTime dateOfJoining) {
         this.dateOfJoining = dateOfJoining;
     }
     public String getDesignation() {
@@ -110,26 +112,26 @@ public class Employee {
     public void setManagerId(String managerId) {
         this.managerId = managerId;
     }
-    public int getYearOfExperience() {
+    public long getYearOfExperience() {
         return yearOfExperience;
     }
 
-    public void setYearOfExperience(int yearOfExperience) {
+    public void setYearOfExperience(long yearOfExperience) {
         this.yearOfExperience = yearOfExperience;
     }
-    public LocalDateTime getCreatedTime() {
+    public OffsetDateTime getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(LocalDateTime createdTime) {
+    public void setCreatedTime(OffsetDateTime createdTime) {
         this.createdTime = createdTime;
     }
 
-    public LocalDateTime getUpdatedTime() {
+    public OffsetDateTime getUpdatedTime() {
         return updatedTime;
     }
 
-    public void setUpdatedTime(LocalDateTime updatedTime) {
+    public void setUpdatedTime(OffsetDateTime updatedTime) {
         this.updatedTime = updatedTime;
     }
 

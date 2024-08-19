@@ -2,18 +2,16 @@ package com.example.EmployeeDb.repository;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.example.EmployeeDb.models.Employee;
 
-@Repository
-public interface EmployeeRepository {
-
-    public Employee findById(String id);
-
+public interface MongoRepo extends MongoRepository<Employee,String>{
+    public Employee findAllById(String id);
+    
     public List<Employee> findByDesignation(String designation);
 
-    public List<Employee> findAllByManagerId(String id);
+    public List<Employee> findAllByManagerId(String managerId);
     
     public List<Employee> findAllByManagerIdAndYearOfExperienceGreaterThanEqual(String id, Long yearOfExperience);
 
@@ -23,5 +21,5 @@ public interface EmployeeRepository {
 
     public void deleteById(String id);
 
-    public void save(Employee e);
+    
 }
